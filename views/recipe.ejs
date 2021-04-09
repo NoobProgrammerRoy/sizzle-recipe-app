@@ -16,8 +16,10 @@
             <h3 class="text-primary">Description</h3>
             <p class="leading-2 mb-2"><%= recipe.description %></p>
             <h3 class="text-primary">Ingredients</h3>
-            <p class="leading-2 mb-2"><%= recipe.ingredients %></p>
-            <h3 class="text-primary">Steps</h3>
+            <% recipe.ingredients.forEach( function(ingredient) { %>
+            <p class="leading-2"><%= ingredient %></p>
+            <% }) %>
+            <h3 class="text-primary mt-2">Steps</h3>
             <p class="leading-2 mb-2"><%= recipe.steps %></p>
             <a href="/home" class="text-primary text-md">Return to Home</a>
         </div>

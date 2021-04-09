@@ -37,10 +37,10 @@ const userSchema = new mongoose.Schema({
             type: String,
             required: true
         },
-        ingredients : {
+        ingredients : [{
             type: String,
             required: true
-        },
+        }],
         steps : {
             type: String,
             required: true

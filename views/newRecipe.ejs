@@ -25,11 +25,14 @@
                 <input type="text" name="title" id="title" required><br><br>
                 <label for="description">Description <span class="text-danger">*</span></label><br>
                 <input type="text" name="description" id="description" required><br><br>
-                <label for="ingredients">Ingredients <span class="text-danger">*</span></label><br>
-                <input type="text" name="ingredients" id="ingredients" required><br><br>
+                <div id="ingredients">
+                    <label for="ingredients">Ingredients <span class="text-danger">*</span></label><br>
+                    <input type="text" name="ingredients" required>
+                </div>
+                <button type="button" class="btn btn-success mt-1" id="add">Add Ingredient</button><br><br>
                 <label for="steps">Steps <span class="text-danger">*</span></label><br>
                 <textarea name="steps" id="steps" rows="10" required></textarea><br><br>
-                <button class="btn btn-primary">Create Recipe</button>
+                <button type="submit" class="btn btn-primary">Create Recipe</button>
             </form>
         </div>
     </div>

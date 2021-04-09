@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Sizzle - Share Your Recipes</title>
+</head>
+
+<body class=" bg-light-gradient h-full">
+    <div class="container mx-auto h-full">
+        <div class="grid grid-cols-1 justify-center items-center h-full">
+            <form action="/signup" method="POST" class="p-2 bg-light rounded-1 shadow-2 mx-2">
+                <h2 class="text-center mb-1 text-primary">Join Now</h2>
+                <% if (messages.error) { %>
+                    <p class="alert alert-danger mb-1"><%= messages.error %></p>
+                <% } %>
+                <label for="username">Username <span class="text-danger">*</span></label><br>
+                <input type="text" name="username" id="username" required><br><br>
+                <label for="email">Email Address <span class="text-danger">*</span></label><br>
+                <input type="email" name="email" id="email" required><br><br>
+                <label for="password">Password <span class="text-danger">*</span></label><br>
+                <input type="password" name="password" id="password" required><br><br>
+                <button type="submit" class="btn btn-primary">Join Now</button><br><br>
+                <p>Already Have an Account? <a href="/" class="text-primary">Click here to Login</a></p>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

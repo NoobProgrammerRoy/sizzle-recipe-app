@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/style.css">
+    <title>Sizzle - Share Your Recipes</title>
+
+    <style>
+        textarea {
+            resize: vertical;
+        }
+    </style>
+
+</head>
+
+<body class="bg-light-gradient">
+    <div class="container mx-auto">
+        <div class="rounded-1 shadow-1 m-2 p-2">
+            <h2 class="text-center text-primary">Edit Recipe</h2>
+            <form action="/home/edit/<%= recipe.url %>" method="POST">
+                <% if (recipe) { %>
+                <label for="title">Title <span class="text-danger">*</span></label><br>
+                <input type="text" name="title" id="title" value="<%= recipe.title %>" required><br><br>
+                <label for="description">Description <span class="text-danger">*</span></label><br>
+                <input type="text" name="description" id="description" value="<%= recipe.description %>" required><br><br>
+                <label for="ingredients">Ingredients <span class="text-danger">*</span></label><br>
+                <input type="text" name="ingredients" id="ingredients" value="<%= recipe.ingredients %>" required><br><br>
+                <label for="steps">Steps <span class="text-danger">*</span></label><br>
+                <textarea name="steps" id="steps" rows="10" required><%= recipe.steps %></textarea><br><br>
+                <button class="btn btn-primary">Edit Recipe</button>
+                <% } %>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

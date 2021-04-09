@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Sizzle - Share Your Recipes</title>
+
+    <style>
+        .profile {
+            grid-template-columns: 1fr 4fr;
+        }
+
+        .delete {
+            color: #dc3545;
+            border: none;
+            border-radius: 0;
+        }
+
+        .delete:hover {
+            cursor: pointer;
+        }
+
+        .delete:focus {
+            outline: none;
+        }
+    </style>
+
+</head>
+
+<body class="bg-light-gradient">
+    <%- include('navbar') %>
+    <div class="container mx-auto">
+        <section class="grid gap-1 p-2 profile">
+            <div>
+                <img src="./img/default.png" alt="Profile picture" class="display-block mx-auto w-75 rounded-full">
+            </div>
+            <div>
+                <h2 class="text-primary"><%= user.username %></h2>
+                <p class="text-muted text-md pb-1"><%= user.email %></p>
+                <p class="pt-1">Recipes Posted: <%= user.recipes.length %></p>
+                <p class="pb-1">Rating:</p>
+                <a href="/logout" class="text-danger text-md">Log Out</a>
+            </div>
+        </section>
+        <section class="p-2">
+            <h2 class="text-center text-primary mb-1">My Recipes</h2>
+            <% user.recipes.forEach( function(recipe) { %>
+                <form action="/home/delete" method="POST">
+                    <div class="rounded-1 shadow-1 my-2 p-2">
+                        <h2 class="text-primary"><%= recipe.title %></h2>
+                        <p class="leading-2 py-1"><%= recipe.description %></p>
+                        <a href="/home/recipe/<%= recipe.url %>" class="text-primary text-md">Read More</a>
+                        <a href="/home/edit/<%= recipe.url %>" class="text-secondary text-md px-1">Edit</a>
+                        <button type="submit" name="url" value="<%= recipe.url %>" class="delete text-md bg-light">Delete</button>
+                    </div>
+                </form>
+            <% }) %>
+        </section>
+    </div>
+</body>
+
+</html>

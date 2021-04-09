@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Sizzle - Share Your Recipes</title>
+    <style>
+        @media all and (min-width: 600px) {
+            .main {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        } 
+    </style>
+</head>
+<body class="bg-light-gradient h-full">
+    <div class="container mx-auto h-full">
+        <div class="grid grid-cols-1 justify-center items-center h-full mx-2 main">
+            <div class="p-2">
+                <h1 class="text-center text-primary mb-3 leading-1">Sizzle - Share Your Recipes</h1>
+                <p class="text-center mb-3 leading-2">Sizzle allows you to enhance your cooking skills. <span class="text-primary text-bold">Create</span>, <span class="text-primary text-bold">Share</span> and <span class="text-primary text-bold">Learn</span> lip-smacking recipes from around the world.</p>
+                <p class="text-center mt-1 leading-2"><a href="/home" class="text-primary">Click here to browse our favourite recipes.</a></p>
+            </div>
+            <div class="p-2 bg-light shadow-1 rounded-1">
+                <h2 class="text-center text-primary mb-1">Welcome Back</h2>
+                <% if (messages.error) { %>
+                    <p class="alert alert-danger mb-1"><%= messages.error %></p>
+                <% } %>
+                <form action="/" method="POST">
+                    <label for="email">Email Address <span class="text-danger">*</span></label><br>
+                    <input type="email" name="email" id="email" required><br><br>
+                    <label for="password">Password <span class="text-danger">*</span></label><br>
+                    <input type="password" name="password" id="password" required><br><br>
+                    <button type="submit" class="btn btn-primary">Log In</button><br><br>
+                    <p>Don't have an Account? <a href="/signup" class="text-primary">Join Now</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

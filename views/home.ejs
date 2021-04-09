@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Sizzle - Share Your Recipes</title>
+</head>
+
+<body class="bg-light-gradient">
+    <%- include('navbar') %>
+    <main class="container mx-auto">
+        <div class="mx-2">
+            <% if (isLoggedIn) { %>
+            <div class="flex flex-row justify-center items-center my-2">
+                <a href="/home/new" class="btn btn-primary text-sm"><span class="text-bold">+</span> Add Recipe</a>
+                <a href="/logout" class="btn btn-danger mx-1 text-sm">Log Out</a>
+                <a href="/profile" class="btn btn-success text-sm">Profile</a>
+            </div>
+            <% } %>
+            <h2 class="text-center text-primary">Popular Recipes</h2>
+            <% recipes.forEach( function (recipe) { %>
+            <section class="my-2 p-1 rounded-1 shadow-1">
+                <h3 class="text-primary"><%= recipe.title %></h3>
+                <p class="text-muted">By <%= recipe.author %></p>
+                <p class="py-1 leading-2"><%= recipe.description %></p>
+                <a href="/home/recipe/<%= recipe.url %>" class="text-primary text-md">Read More</a>
+            </section>
+            <% }) %>
+        </div>
+    </main>
+</body>
+
+</html>

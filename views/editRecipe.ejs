@@ -20,10 +20,12 @@
     <div class="container mx-auto">
         <div class="rounded-1 shadow-1 m-2 p-2">
             <h2 class="text-center text-primary">Edit Recipe</h2>
-            <form action="/home/edit/<%= recipe.url %>" method="POST">
+            <form action="/home/edit/<%= recipe.url %>" method="POST" enctype="multipart/form-data">
                 <% if (recipe) { %>
                 <label for="title">Title <span class="text-danger">*</span></label><br>
                 <input type="text" name="title" id="title" value="<%= recipe.title %>" required><br><br>
+                <label for="picture">Picture</label><br>
+                <input type="file" name="picture" id="picture" accept="image/jpeg, image/png"><br><br>
                 <label for="description">Description <span class="text-danger">*</span></label><br>
                 <input type="text" name="description" id="description" value="<%= recipe.description %>" required><br><br>
                 <div id="ingredients">

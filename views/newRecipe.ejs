@@ -20,9 +20,11 @@
     <div class="container mx-auto">
         <div class="rounded-1 shadow-1 m-2 p-2">
             <h2 class="text-center text-primary">New Recipe</h2>
-            <form action="/home/new" method="POST">
+            <form action="/home/new" method="POST" enctype="multipart/form-data">
                 <label for="title">Title <span class="text-danger">*</span></label><br>
                 <input type="text" name="title" id="title" required><br><br>
+                <label for="picture">Picture <span class="text-danger">*</span></label><br>
+                <input type="file" name="picture" id="picture" accept="image/jpeg, image/png" required><br><br>
                 <label for="description">Description <span class="text-danger">*</span></label><br>
                 <input type="text" name="description" id="description" required><br><br>
                 <div id="ingredients">

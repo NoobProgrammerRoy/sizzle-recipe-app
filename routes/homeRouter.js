@@ -1,7 +1,13 @@
 const express = require('express')
 const router = express.Router()
+const path = require('path')
+const fs = require('fs')
+const fileUpload = require('express-fileupload')
 const User = require('../models/userModel')
 const Recipe = require('../models/recipeModel')
+
+// Middleware
+router.use(fileUpload())
 
 // Home Page
 router.get('/', async (req, res) => {
@@ -25,12 +31,24 @@ router.get('/new', (req, res) => {
 
 router.post('/new', async (req, res) => {
     if (!req.session.user) return res.redirect('/home')
+    if (!req.files || Object.keys(req.files).length === 0) {
+        return res.send('Could not upload file')
+    }
+
     const title = req.body.title
     const author = req.session.user.username
     const description = req.body.description
     const ingredients = req.body.ingredients
     const steps = req.body.steps
     const url = generateURL()
+    
+    // File Upload
+    const file = req.files.picture
+    const picture = path.join(__dirname, '../public/img/') + url
+    file.mv(picture, err => {
+        if (err) return console.log(err)
+    })
+
     const recipe = new Recipe({
         title: title,
         author: author,
@@ -70,12 +88,22 @@ router.get('/edit/:id', async (req, res) => {
 
 router.post('/edit/:id', async (req, res) => {
     if (!req.session.user) return res.redirect('/home')
+    
     const title = req.body.title
     const author = req.session.user.username
     const description = req.body.description
     const ingredients = req.body.ingredients
     const steps = req.body.steps
     const url = req.params.id
+    
+    if (req.files) {
+        // File Upload
+        const file = req.files.picture
+        const picture = path.join(__dirname, '../public/img/') + url
+        file.mv(picture, err => {
+            if (err) return console.log(err)
+        })
+    }
     
     const recipe = await Recipe.updateOne({ url: url }, { $set: {
         title: title,
@@ -109,6 +137,11 @@ router.post('/delete', async (req, res) => {
     await User.updateOne({ email: req.session.user.email }, { $pull : { recipes :{ 
         url: url
     }}})
+
+    fs.unlink(path.join(__dirname, '../public/img/') + url, err => {
+        if (err) return console.log(err)
+        console.log('Picture deleted successfully')
+    })
 
     req.session.user = await User.findOne({ email: req.session.user.email })
 

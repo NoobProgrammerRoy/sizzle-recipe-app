@@ -3,12 +3,12 @@
 
 ## Features
  - Create, Read and Share your favorite and delicious recipes.
+ - Add Pictures of your Recipes.
  - CRUD functionality for your recipes.
+ - Clean and Minimalistic UI
 
 ### Planned additions(work in progress)
 - Search by name or tags functionality.
-- Add Pictures of your Recipes.
-- UI improvements etc.
 
 ### Technology Stack
 Frontend:
